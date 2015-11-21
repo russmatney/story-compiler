@@ -1,0 +1,4 @@
+[package]
+name = "story-compiler"
+version = "0.1.0"
+authors = ["Russell Matney <russell.matney@gmail.com>"]
