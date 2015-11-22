@@ -30,13 +30,57 @@ impl fmt::Display for Point2 {
     }
 }
 
+
+struct NumberList(Vec<i32>);
+
+impl fmt::Display for NumberList {
+    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
+        let NumberList(ref vec) = *self;
+
+        try!(write!(f, "["));
+
+
+        for (count, v) in vec.iter().enumerate() {
+            if count != 0 { try!(write!(f, ", ")); }
+            try!(write!(f, "{}", v));
+        }
+
+        return write!(f, "]");
+    }
+}
+
+
+struct WordList(Vec<i32>);
+
+impl fmt::Display for WordList {
+    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
+        let WordList(ref vec) = *self;
+
+        for (_, v) in vec.iter().enumerate() {
+            write!(f, "|").unwrap();
+            write!(f, "{}", v).unwrap();
+            write!(f, "|").unwrap();
+        }
+
+        return write!(f, " words");
+    }
+}
+
 fn main() {
 
     let minmax = MinMax(0, 14);
     println!("{}", minmax);
+    println!("{:?}", minmax);
 
     let point2 = Point2 { x: 1.2, y: 4.2 };
     println!("{}", point2);
+    println!("{:?}", point2);
+
+    let v = NumberList(vec![1, 2, 3]);
+    println!("{}", v);
+
+    let v = WordList(vec![1, 2, 3]);
+    println!("{}", v);
 }
 
 
